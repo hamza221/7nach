@@ -1,32 +1,51 @@
 var s;
 var scl =20;
 var food;
-var spee;
+var blo9;
 function setup() {
   createCanvas(600, 600);
   s= new snake();
-  spee=s.speed();
-  frameRate(spee);
+ 
+  frameRate(10);
   pickLocation();
   
 }
 function pickLocation(){
     var cols = floor(height/scl);
     var rows = floor(width/scl);
-    food=createVector(floor(random(cols)),floor(random(rows)));
+    
+    food=createVector(floor(random(cols-1)),floor(random(rows-1)));
     food.mult(scl);
+    while(food.x==0||food.y==0||food.x==580||food.y==580){
+      food=createVector(floor(random(cols-1)),floor(random(rows-1)));
+      food.mult(scl);
+    }
+    
 }
 function draw() {
+  
   background(51);
+  stroke(color(255, 255, 255));  
+  strokeWeight(1);
+  fill(55);
+  rect(20, 20, 560, 560);
+
+  if(s.x==0 || s.y==0||s.x==580||s.y==580){
+    console.log("zeb");
+    s.reset();
+    pickLocation();
+    
+  }
   s.death();
   s.update();
   s.show();
+  
   if(s.eat(food)){
     pickLocation();
   }
   fill(255,0,100);
   rect(food.x,food.y,scl,scl); 
-  
+
   
 }
 function keyPressed(){

@@ -1,14 +1,14 @@
 function snake(){
     this.x=1*scl;
     this.y=1*scl;
-    this.xspeed=1;
+    this.xspeed=0;
     this.yspeed=0;
     this.total=0;
     this.tail=[];
     this.maxx =10;
     this.reset=function(){
-        this.x=0;
-    this.y=0;
+        this.x=1*scl;
+    this.y=1*scl;
     this.xspeed=1;
     this.yspeed=0;
     this.total=0;
@@ -17,16 +17,30 @@ function snake(){
 
     }
     this.speed=function(){
-        this.maxx +=this.total; 
-        this.maxx=constrain(this.maxx,10,40);
+        if ((this.total>=0)&&(this.total<=3)){
+            this.maxx = 10;
+        }else if ((this.total>3)&&(this.total<=6)){
+            this.max=20;
+        }
+        else if ((this.total>6)&&(this.total<10)){
+            this.max=25
+        }
+        else if ((this.total>=10)&&(this.total<50)){
+            this.max=30
+        }
+        else {
+            this.max=40;
+        }
+       
+       
         return this.maxx;
     }
     this.death=function(){
         for(var i=0;i<this.tail.length;i++){
             pos = this.tail[i];
             q=((this.x===pos.x)&&(this.y==pos.y));
-         
-            if(q){
+            
+            if(q ){
                 this.reset();
                 
             }
