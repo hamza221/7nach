@@ -1,10 +1,12 @@
 var s;
 var scl =20;
 var food;
+var spee;
 function setup() {
   createCanvas(600, 600);
   s= new snake();
-  frameRate(10);
+  spee=s.speed();
+  frameRate(spee);
   pickLocation();
   
 }
@@ -16,10 +18,7 @@ function pickLocation(){
 }
 function draw() {
   background(51);
-  if(s.death()){
-    s.reset();
-  pickLocation();
-  }
+  s.death();
   s.update();
   s.show();
   if(s.eat(food)){
