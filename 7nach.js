@@ -16,7 +16,10 @@ function pickLocation(){
 }
 function draw() {
   background(51);
-  s.death();
+  if(s.death()){
+    s.reset();
+  pickLocation();
+  }
   s.update();
   s.show();
   if(s.eat(food)){
@@ -28,17 +31,19 @@ function draw() {
   
 }
 function keyPressed(){
-  if(keyCode==UP_ARROW){
+  
+  if((keyCode==UP_ARROW) && (s.chek(0,1))){
     s.dir(0,-1);
   }
-  else if (keyCode==DOWN_ARROW){
+  else if ((keyCode==DOWN_ARROW) && (s.chek(0,-1))){
     s.dir(0,1);
   }
-   else if (keyCode==RIGHT_ARROW){
+   else if ((keyCode==RIGHT_ARROW) && (s.chek(-1,0))){
     s.dir(1,0);
   }
-   else if (keyCode==LEFT_ARROW){
+   else if ((keyCode==LEFT_ARROW) && (s.chek(1,0))){
     s.dir(-1,0);
   }
+  var k= keyCode;
 }
 

@@ -5,6 +5,15 @@ function snake(){
     this.yspeed=0;
     this.total=0;
     this.tail=[];
+    this.reset=function(){
+        this.x=0;
+    this.y=0;
+    this.xspeed=1;
+    this.yspeed=0;
+    this.total=0;
+    this.tail=[];
+
+    }
     this.death=function(){
         for(var i=0;i<this.tail.length;i++){
             pos = this.tail[i];
@@ -12,6 +21,10 @@ function snake(){
             if(d<1){
                 this.total=0;
                 this.tail=[];
+                return true;
+            }
+            else{
+                return false;
             }
         }
     }
@@ -50,5 +63,13 @@ function snake(){
     this.dir=function(a,b){
       this.xspeed=a;
       this.yspeed=b;
+    }
+    this.chek=function(x,y){
+        if((x===this.xspeed)&&(y===this.yspeed)){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 }
