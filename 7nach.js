@@ -26,10 +26,14 @@ function draw() {
   
   background(51);
   stroke(color(255, 255, 255));  
+  fill(255,255,255);
+  textSize(16);
+  text(s.total, 20, 20);
+  stroke(color(255, 255, 255));  
   strokeWeight(1);
   fill(55);
   rect(20, 20, 560, 560);
-
+  stroke(color(51));  
   if(s.x==0 || s.y==0||s.x==580||s.y==580){
     console.log("zeb");
     s.reset();
@@ -43,6 +47,7 @@ function draw() {
   if(s.eat(food)){
     pickLocation();
   }
+  stroke(color(51));  
   fill(255,0,100);
   rect(food.x,food.y,scl,scl); 
 
